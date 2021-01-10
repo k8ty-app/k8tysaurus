@@ -1,0 +1,11 @@
+.bsp
+.idea
+target
+
+# These are generated from the sbt plugin, and not needed
+blogs
+docs
+
+# These are auto-generated!
+k8tysaurus/docs
+k8tysaurus/blog
