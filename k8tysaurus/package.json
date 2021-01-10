@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "quick": "NO_PREPROCESS=true docusaurus start",
+    "preprocess": "cd ..; sbt 'docs/mdoc; blog/mdoc'",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
