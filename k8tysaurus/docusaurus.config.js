@@ -64,7 +64,7 @@ module.exports = {
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} Mark Rudolph. Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} Mark Rudolph.`,
         },
     },
     presets: [
@@ -72,6 +72,7 @@ module.exports = {
             '@docusaurus/preset-classic',
             {
                 docs: {
+                    path: 'mdocs',
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl:
                         'https://github.com/k8ty-app/k8tysaurus/edit/master/',

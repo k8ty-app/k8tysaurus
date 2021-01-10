@@ -1,7 +1,17 @@
 module.exports = {
   someSidebar: {
-    k8ty: ['k8ty'],
-    Melvin: ['melvin/about', 'melvin/install', 'melvin/usage'],
-    Frodo: ['frodo/about', 'frodo/install', 'frodo/usage'],
+    k8ty: [
+      'k8ty/k8ty',
+      'k8ty/cloud',
+      'k8ty/infra',
+      'k8ty/deploy',
+      'k8ty/cicd',
+    ],
+    'k8ty Apps': [
+      'ka/melvin'
+    ],
+    'Home Brew Apps': [
+      'hb/frodo'
+    ],
   },
 };
