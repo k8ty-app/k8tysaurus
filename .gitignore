@@ -1,6 +1,12 @@
-.bsp
 .idea
+.vscode
+
 target
+
+.bsp
+.bloop
+.metals
+metals.sbt
 
 # These are generated from the sbt plugin, and not needed
 blogs
