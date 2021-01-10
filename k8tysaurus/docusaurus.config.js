@@ -72,12 +72,13 @@ module.exports = {
             '@docusaurus/preset-classic',
             {
                 docs: {
-                    path: 'mdocs',
+                    path: process.env.NO_PREPROCESS ? 'mdocs' : 'docs',
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl:
                         'https://github.com/k8ty-app/k8tysaurus/edit/master/',
                 },
                 blog: {
+                    path: process.env.NO_PREPROCESS ? 'mblog' : 'blog',
                     showReadingTime: true,
                     editUrl:
                         'https://github.com/k8ty-app/k8tysaurus/edit/master/',
