@@ -64,6 +64,11 @@ function Home() {
                 <div className="container">
                     <h1 className="hero__title">{siteConfig.title}</h1>
                     <p className="hero__subtitle">{siteConfig.tagline}</p>
+                    <p>
+                        <a href="https://drone.k8ty.app/k8ty-app/k8tysaurus">
+                            <img src="https://drone.k8ty.app/api/badges/k8ty-app/k8tysaurus/status.svg" />
+                        </a>
+                    </p>
                     <div className={styles.buttons}>
                         <Link
                             className={clsx(
