@@ -1,0 +1,24 @@
+---
+kind: pipeline
+type: kubernetes
+name: firebase_deploy
+
+trigger:
+  branch:
+    - main
+
+steps:
+  - name: firebase_deploy
+    image: adoptopenjdk/openjdk15:debian-slim
+    commands:
+      - apt update && apt install nodejs --yes
+      - curl -o- -L https://yarnpkg.com/install.sh | bash
+      - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+      - curl -Ls https://git.io/sbt > sbtx && chmod 0755 sbtx
+      - ./sbtx "docs/mdoc; blog/mdoc"
+      - yarn --cwd ./k8tysaurus build
+      - yarn global add firebase-tools
+      - firebase deploy --only hosting --token $FIREBASE_TOKEN
+    environment:
+      FIREBASE_TOKEN:
+        from_secret: FIREBASE_TOKEN
