@@ -121,6 +121,7 @@ enter the subdirectory.
 apt update && apt install nodejs --yes
 curl -o- -L https://yarnpkg.com/install.sh | bash
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+yarn --cwd ./k8tysaurus install
 yarn --cwd ./k8tysaurus build
 ```
 
@@ -157,6 +158,7 @@ steps:
       - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
       - curl -Ls https://git.io/sbt > sbtx && chmod 0755 sbtx
       - ./sbtx "docs/mdoc; blog/mdoc"
+      - yarn --cwd ./k8tysaurus install
       - yarn --cwd ./k8tysaurus build
       - yarn global add firebase-tools
       - firebase deploy --only hosting --token $FIREBASE_TOKEN
