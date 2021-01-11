@@ -1,7 +1,7 @@
 ---
 id: deploy
-title: Flux
-sidebar_label: Deployment
+title: Helm + Flux
 slug: /deployment
 ---
-Hello!
+
+TODO: Talk about helm, and flux

@@ -1,7 +1,7 @@
 ---
 id: k8ty
-title: k8ty
-sidebar_label: About
+title: About
 slug: /
 ---
-Hello!
+
+TODO: Talk about the this site

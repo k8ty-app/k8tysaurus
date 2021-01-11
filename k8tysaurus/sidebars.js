@@ -1,16 +1,17 @@
 module.exports = {
   someSidebar: {
-    k8ty: [
+    K8ty: [
       'k8ty/k8ty',
       'k8ty/cloud',
       'k8ty/infra',
       'k8ty/deploy',
       'k8ty/cicd',
     ],
-    'k8ty Apps': [
+    'K8ty Apps': [
       'ka/melvin'
     ],
     'Home Brew Apps': [
+      'hb/tap',
       'hb/frodo'
     ],
   },
