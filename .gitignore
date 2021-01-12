@@ -1,6 +1,6 @@
 .idea
 .vscode
-
+*.code-workspace
 target
 
 .bsp
