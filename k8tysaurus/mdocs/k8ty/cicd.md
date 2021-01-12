@@ -4,21 +4,32 @@ title: CI/CD
 slug: /cicd
 ---
 
-This section goes over a few examples of CI/CD pipelines using our self-hosted Drone IO system, as well as
-some quick info about getting it set up in our Kubernetes cluster.
+This page goes over a few examples of the CI/CD pipelines set up deploy our apps.
 
-## Installing Drone via Helm
+## Tech Review
+
+Here are a list of the CI/CD resources used:
+
+* Drone IO
+* GitHub Actions
+
+## Drone IO
+
+### Installing Drone via Helm
+
 [Drone IO](https://www.drone.io/) has some good documentation about [installing to k8s](https://docs.drone.io/runner/kubernetes/overview/),
 but they also maintain a [helm repo](https://github.com/drone/charts) to [quickly install](https://github.com/drone/charts/blob/master/charts/drone/docs/install.md) the server + runner as well.
 
-### Installing the Server
-[Official Server Docs](https://github.com/drone/charts/blob/master/charts/drone/docs/install.md)
+### Installing the Drone Server
 
-A slighly tricky part, if you're not yet familiar with k8s, is adding an ingress to route web traffic to the ui - which 
+[Official Server Docs](https://github.com/drone/charts/blob/master/charts/drone/docs/install.md) 👈
+
+A slightly tricky part, if you're not yet familiar with k8s, is adding an ingress to route web traffic to the ui - which 
 is a bit out of scope ot their documentation. I have included an example below, which might be different depending on
 your usage of Let's Encrypt/Cert Manager.
 
 With a filled-out a `drone-values.yaml` file:
+
 ```yaml
 ingress:
   enabled: true
@@ -53,18 +64,25 @@ env:
   ## Ref: https://docs.drone.io/installation/providers/github/
   DRONE_GITHUB_CLIENT_ID: xxxxxxxxxxxxxxxxxxxxxxx
   DRONE_GITHUB_CLIENT_SECRET: yyyyyyyyyyyyyyyyyyyyy
+  ## Especially with an ingress, you will want to limit the users who can access the instance. 
+  ## Set yourself as an admin, and filter only your users and/or orgs (which presuambly, you are a part of)
+  DRONE_USER_CREATE: "username:yourAccount,admin:true"
+  DRONE_USER_FILTER: "yourOrg"
 ```
-you can run 
 
-```bash 
+you can run
+
+```bash
 helm install --namespace drone drone drone/drone -f drone-values.yaml
 ```
 
-### Installing the Runner
-[Official Runner Docs](https://github.com/drone/charts/blob/master/charts/drone-runner-kube/docs/install.md)
+### Installing the Drone Runner
+
+[Official Runner Docs](https://github.com/drone/charts/blob/master/charts/drone-runner-kube/docs/install.md) 👈
 
 The core/minimal settings for the runner are mainly ensuring it's in the same namespace, and using the same `DRONE_RPC_SECRET`:
 With a filled out `drone-runner-kube-values.yaml`:
+
 ```yaml
 ## Each namespace listed below will be configured such that the runner can run build Pods in
 ## it. This comes in the form of a Role and a RoleBinding. If you change env.DRONE_NAMESPACE_DEFAULT
@@ -88,6 +106,7 @@ env:
   ##
   DRONE_NAMESPACE_DEFAULT: drone
 ```
+
 you can run
 
 ```bash
@@ -98,11 +117,12 @@ helm upgrade drone-runner-kube drone/drone-runner-kube --namespace drone --value
 
 This site is set to deploy on every push to `main`! To accomplish thing, we need to perform several tasks:
 
-1. Run an `sbt` task to pre-proccess our md files via the scalametals/mdoc plugin.
+1. Run an `sbt` task to pre-process our md files via the scalameta/mdoc plugin.
 2. Run a `yarn` task to build the site.
 3. Run a `firebase` task to deploying to hosting via a CI token.
 
 ### sbt
+
 As elsewhere, we will use [sbt-extras](https://github.com/paulp/sbt-extras) to grab a script to install
 sbt, and anything else Scala related that we need! At that point, we need to run the tasks to preprocess
 the `docs` and `blog` -- which we can do in a one-liner:
@@ -113,6 +133,7 @@ curl -Ls https://git.io/sbt > sbtx && chmod 0755 sbtx
 ```
 
 ### yarn
+
 In lieu of having a purpose-built runner image, we will stick with the openjdk base, but install node,
 and install yarn via curl, before running our build. Note the handy `--cwd` flag we can use to not have to
 enter the subdirectory.
@@ -126,6 +147,7 @@ yarn --cwd ./k8tysaurus build
 ```
 
 ### Firebase
+
 Firebase makes is easy to use vi a CI runner via a token. To acquire one, you can run
 `firebase login:ci` - we will store this a a secret named `FIREBASE_TOKEN` in out Drone settings.
 We will also use yarn to install firebase-tools:
@@ -167,6 +189,58 @@ steps:
         from_secret: FIREBASE_TOKEN
 ```
 
-## Building Docker Images
+## GitHub Actions
 
-TODO
+### Build + Push Docker Images
+
+Below is an example of a GitHub Action that will build + push a `:latest` image on every push to the `main` branch to GitHubs Container Registry.
+
+This is fairly well documented thing, so I'll mainly discuss the things unique for building a Scala app (this example is from the `Melvin` app).
+
+After using the `- uses: actions/setup-java@v1`, we will use [sbt-extras](https://github.com/paulp/sbt-extras) to grab a script to install sbt, which will pull in any other dependencies needed! The project this example is from project uses the
+`sbt-native-packager` sbt plugin, and is use to compile/stage a Dockerfile for building (via the `./sbtx docker:stage` line).
+
+From this point, it's building a Docker image as normal. Do note, that if you want your pushed image to be publicly accessible, you'll need to go to the package page, and set it to be public access!
+
+```yaml
+name: Publish Latest Docker Image
+on:
+  push:
+    branches: main
+
+jobs:
+  push_latest:
+    name: Push image:latest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Meowt
+        uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        name: JavaJavaJava
+        with:
+          java-version: '15'
+          java-package: jdk
+          architecture: x64
+      - run: |
+          curl -Ls https://git.io/sbt > sbtx && chmod 0755 sbtx
+          ./sbtx docker:stage
+        name: Compile + Docker Stage
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USER }}
+          password: ${{ secrets.GHCR_PASS }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: ./target/docker/stage
+          file: ./target/docker/stage/Dockerfile
+          push: true
+          tags: ghcr.io/k8ty-app/melvin:latest
+          labels: |
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+```
