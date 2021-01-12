@@ -75,13 +75,13 @@ module.exports = {
                     path: process.env.NO_PREPROCESS ? 'mdocs' : 'docs',
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl:
-                        'https://github.com/k8ty-app/k8tysaurus/edit/master/',
+                        'https://github.com/k8ty-app/k8tysaurus/k8tysaurus/edit/master/',
                 },
                 blog: {
                     path: process.env.NO_PREPROCESS ? 'mblog' : 'blog',
                     showReadingTime: true,
                     editUrl:
-                        'https://github.com/k8ty-app/k8tysaurus/edit/master/',
+                        'https://github.com/k8ty-app/k8tysaurus/k8tysaurus/edit/master/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
