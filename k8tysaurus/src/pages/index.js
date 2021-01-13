@@ -79,6 +79,18 @@ function Home() {
                             Read Some Ramblings
                         </Link>
                     </div>
+                    <br></br>
+                    <div className={styles.buttons}>
+                        <Link
+                            className={clsx(
+                                'button button--outline button--secondary button--lg',
+                                styles.getStarted,
+                            )}
+                            to={useBaseUrl('docs/')}>
+                            Read Some Docs
+                        </Link>
+                    </div>
+
                 </div>
             </header>
             <main>
