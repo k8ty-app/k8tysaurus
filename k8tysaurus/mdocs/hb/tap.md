@@ -3,7 +3,7 @@ title: K8ty-Tap
 description: Info about the custom homebrew tap
 ---
 
-These applications can be installed via [Homebrew](https://docs.brew.sh), and are 
+These applications can be installed via [Homebrew](https://docs.brew.sh), and are
 built via sbt using scalameta/sbt-native-image plugin. Build times are quite slow,
 but the startup speeds are quite fast!
 

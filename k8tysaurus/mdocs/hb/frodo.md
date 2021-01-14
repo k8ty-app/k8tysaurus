@@ -129,12 +129,12 @@ Frodo reads your application.conf file, looks for any lines containing `${?`, an
 for the values. It will then base64 encode those, and print out the yaml template that you can adjust
 and apply.
 
-If you pass it a (relative) file path, it will only look for that file. If you pass it no arguments, it will look for 
+If you pass it a (relative) file path, it will only look for that file. If you pass it no arguments, it will look for
 `./src/main/resources/application.conf` and then `./src/main/resources/reference.conf`
 
 Leaving a field blank will omit it from the output.
 
-Here is an example of filled in values going through the above refernece file:
+Here is an example of filled in values going through the above reference file:
 
 ```yaml
 HOST: localhost
