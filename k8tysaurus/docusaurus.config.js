@@ -93,7 +93,8 @@ module.exports = {
         [
             'docusaurus2-dotenv',
             {
-                path: "./.env.local", // The path to your environment variables.
+                path: "./.env.local",
+                systemvars: true
             }
         ]
     ]
