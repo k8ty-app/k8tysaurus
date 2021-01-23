@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '@theme/Layout';
 import { FirebaseAppProvider } from 'reactfire';
 import config from '../config/config';
 
@@ -7,16 +6,12 @@ const firebaseConfig = JSON.parse(
     Buffer.from(config.FIREBASE_CONFIG, 'base64').toString()
 );
 
-function FireLayout(props) {
-
+function Root({ children }) {
     return (
         <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-            <Layout {...props}>
-                {props.children}
-            </Layout>
+            {children}
         </FirebaseAppProvider>
-    )
-
+    );
 }
 
-export default FireLayout;
+export default Root;
