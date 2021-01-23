@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import Layout from '@theme/Layout';
+import FireLayout from '../components/FireLayout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -53,11 +53,12 @@ function Feature({imageUrl, title, description}) {
     );
 }
 
+
 function Home() {
     const context = useDocusaurusContext();
     const {siteConfig = {}} = context;
     return (
-        <Layout
+        <FireLayout
             title={`Hello from ${siteConfig.title}`}
             description="Description will go into a meta tag in <head />">
             <header className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -106,7 +107,7 @@ function Home() {
                     </section>
                 )}
             </main>
-        </Layout>
+        </FireLayout>
     );
 }
 

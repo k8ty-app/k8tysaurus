@@ -25,7 +25,7 @@ module.exports = {
                     label: 'Docs',
                     position: 'left',
                 },
-                {to: 'blog', label: 'Blog', position: 'left'},
+                { to: 'blog', label: 'Blog', position: 'left' },
                 {
                     href: 'https://github.com/k8ty-app',
                     label: 'GitHub',
@@ -89,4 +89,12 @@ module.exports = {
             },
         ],
     ],
+    plugins: [
+        [
+            'docusaurus2-dotenv',
+            {
+                path: "./.env.local", // The path to your environment variables.
+            }
+        ]
+    ]
 };
