@@ -1,16 +1,17 @@
 import React from 'react';
-import { FirebaseAppProvider } from 'reactfire';
+import firebase from 'firebase/app';
 import config from '../config/config';
 
-const firebaseConfig = JSON.parse(
+const fbc = JSON.parse(
     Buffer.from(config.FIREBASE_CONFIG, 'base64').toString()
 );
+firebase.initializeApp(fbc);
 
 function Root({ children }) {
     return (
-        <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+        <>
             {children}
-        </FirebaseAppProvider>
+        </>
     );
 }
 

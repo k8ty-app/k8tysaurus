@@ -21,8 +21,7 @@
     "docusaurus2-dotenv": "^1.4.0",
     "firebase": "^8.2.4",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "reactfire": "^3.0.0-rc.0"
+    "react-dom": "^16.8.4"
   },
   "browserslist": {
     "production": [

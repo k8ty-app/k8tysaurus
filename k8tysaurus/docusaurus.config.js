@@ -27,8 +27,9 @@ module.exports = {
                 },
                 { to: 'blog', label: 'Blog', position: 'left' },
                 {
-                    href: 'https://github.com/k8ty-app',
-                    label: 'GitHub',
+                    to: 'account/',
+                    activeBasePath: 'account',
+                    label: 'Account',
                     position: 'right',
                 },
             ],
