@@ -25,3 +25,5 @@ steps:
     environment:
       FIREBASE_TOKEN:
         from_secret: FIREBASE_TOKEN
+      FIREBASE_CONFIG:
+        from_secret: FIREBASE_CONFIG
