@@ -6,6 +6,8 @@ name: firebase_deploy
 trigger:
   branch:
     - main
+  event:
+    - push
 
 steps:
   - name: firebase_deploy
