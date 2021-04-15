@@ -1,18 +1,14 @@
 ---
-title: K8ty-Tap
+title: K8TY-Tap
 description: Info about the custom homebrew tap
+id: k8ty-tap
 ---
 
-These applications can be installed via [Homebrew](https://docs.brew.sh), and are
+## About
+
+K8TY-Tap is a [Homebrew](https://docs.brew.sh) tap repository. Scala apps are
 built via sbt using scalameta/sbt-native-image plugin. Build times are quite slow,
 but the startup speeds are quite fast!
-
-*Note* If you are using an MBA/MBP with an M1 chip, you will likely need to use a `brew` that
-is in Rosetta mode due to the dependency on sbt (and thus openjdk). Once openjdk supports the M1,
-this won't be required.
-
-I have had success building native images on the M1 using the zulu jdk, if you want to build
-the apps manually!
 
 ## How do I install these formulae?
 

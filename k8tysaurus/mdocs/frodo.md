@@ -2,11 +2,12 @@
 title: Frodo
 ---
 
-[GitHub Project](https://github.com/k8ty-app/frodo/)
-
+## About 
 Frodo is a simple app to help you turn your `application.conf` file into a `k8s-secret.yaml` file.
 
-For example, if we have an `application.conf` file that looked like
+## Overview
+
+If we have an `application.conf` file that looked like
 
 ```hocon
 host = "0.0.0.0"
@@ -134,6 +135,8 @@ If you pass it a (relative) file path, it will only look for that file. If you p
 
 Leaving a field blank will omit it from the output.
 
+## Example
+
 Here is an example of filled in values going through the above reference file:
 
 ```yaml
@@ -163,3 +166,6 @@ data:
  PG_PASS: cGFzc3dvcmQ=
  S3_ENDPOINT: aHR0cDovL215LnMz
  ```
+## Repository
+
+[https://github.com/k8ty-app/frodo/](https://github.com/k8ty-app/frodo/)

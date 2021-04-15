@@ -1,5 +1,5 @@
 ---
-slug: hello-world
+slug: /blog/2021/01/10/hello-world
 title: Hello
 author: Mark Rudolph
 author_url: https://github.com/alterationx10

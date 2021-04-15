@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'k8ty',
-    tagline: 'Bringing the void straight to you!',
+    title: 'K8TY.APP',
+    tagline: '< Tech Blog | Project Documentation >',
     url: 'https://k8ty.app',
     baseUrl: '/',
     onBrokenLinks: 'throw',
@@ -13,22 +13,30 @@ module.exports = {
             respectPrefersColorScheme: true,
         },
         navbar: {
-            title: 'k8ty',
+            title: 'K8TY.APP',
             logo: {
                 alt: 'My Site Logo',
                 src: 'img/k8ty.png',
             },
             items: [
                 {
-                    to: 'docs/',
-                    activeBasePath: 'docs',
+                    to: '/',
+                    label: 'Blog',
+                    position: 'left',
+                    activeBaseRegex: '^/$',
+                },
+                {
+                    to: '/docs',
                     label: 'Docs',
                     position: 'left',
                 },
-                { to: 'blog', label: 'Blog', position: 'left' },
                 {
-                    to: 'account/',
-                    activeBasePath: 'account',
+                    to: '/about',
+                    label: 'About',
+                    position: 'left'
+                },
+                {
+                    to: '/account',
                     label: 'Account',
                     position: 'right',
                 },
@@ -36,35 +44,6 @@ module.exports = {
         },
         footer: {
             style: 'dark',
-            links: [
-                {
-                    title: 'Docs',
-                    items: [
-                        {
-                            label: 'Docs',
-                            to: 'docs',
-                        },
-                    ],
-                },
-                {
-                    title: 'Here',
-                    items: [
-                        {
-                            label: 'Blog',
-                            to: 'blog',
-                        },
-                    ],
-                },
-                {
-                    title: 'Elsewhere',
-                    items: [
-                        {
-                            label: 'Twitter',
-                            href: 'https://twitter.com/alterationx10',
-                        },
-                    ],
-                },
-            ],
             copyright: `Copyright © ${new Date().getFullYear()} Mark Rudolph.`,
         },
     },
@@ -83,6 +62,7 @@ module.exports = {
                     showReadingTime: true,
                     editUrl:
                         'https://github.com/k8ty-app/k8tysaurus/k8tysaurus/edit/master/',
+                    routeBasePath: '/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),

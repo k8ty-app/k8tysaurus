@@ -1,19 +1,19 @@
 module.exports = {
-  someSidebar: {
-    K8ty: [
-      'k8ty/k8ty',
-      'k8ty/accounts',
-      'k8ty/cloud',
-      'k8ty/infra',
-      'k8ty/deploy',
-      'k8ty/cicd',
-    ],
-    'K8ty Apps': [
-      'ka/melvin'
-    ],
-    'Home Brew Apps': [
-      'hb/tap',
-      'hb/frodo'
-    ],
-  },
+    someSidebar: [
+        {
+            K8ty: [
+                'k8ty/k8ty',
+                'k8ty/accounts',
+                'k8ty/cicd',
+            ]
+        },
+        {
+            type: 'doc',
+            id: 'k8ty-tap'
+        },
+        {
+            type: 'doc',
+            id: 'frodo'
+        },
+    ]
 };
