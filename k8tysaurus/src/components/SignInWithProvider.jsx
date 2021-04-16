@@ -46,9 +46,9 @@ function SignInWithProvider(props) {
                                 Please select from (🙃 the one) supported provider(s) below 👇
                             </p>
                             <p>
-                                For more information about k8ty.app user accounts, please see <Link to={useBaseUrl('docs/accounts')}>the docs</Link>.
+                                For more information about k8ty.app user accounts, please see <Link to={useBaseUrl('docs/k8ty-app/accounts')}>the docs</Link>.
                             </p>
-                    
+
                         </div>
                         <div className="card__footer">
                             <button onClick={signInWithGitHub} className="button button--primary button--block" >Log In with GitHub</button>

@@ -1,12 +1,10 @@
 ---
-title: K8TY-Tap
+title: k8ty-tap
 description: Info about the custom homebrew tap
 id: k8ty-tap
 ---
 
-## About
-
-K8TY-Tap is a [Homebrew](https://docs.brew.sh) tap repository. Scala apps are
+k8ty-tap is a [Homebrew](https://docs.brew.sh) tap repository. Scala apps are
 built via sbt using scalameta/sbt-native-image plugin. Build times are quite slow,
 but the startup speeds are quite fast!
 

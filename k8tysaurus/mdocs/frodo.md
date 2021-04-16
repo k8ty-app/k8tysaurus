@@ -1,9 +1,8 @@
 ---
-title: Frodo
+title: frodo
 ---
 
-## About 
-Frodo is a simple app to help you turn your `application.conf` file into a `k8s-secret.yaml` file.
+frodo is a simple app to help you turn your `application.conf` file into a `k8s-secret.yaml` file.
 
 ## Overview
 
