@@ -7,7 +7,11 @@ lazy val k8tysaurus = project
   .settings(
     name := "k8tysaurus",
     version := "0.1.0",
-    scalaVersion := preDotty
+    scalaVersion := preDotty,
+    libraryDependencies ++= Seq(
+      "dev.zio" %% "zio" % "1.0.6",
+      "dev.zio" %% "zio-prelude" % "1.0.0-RC3"
+    )
   )
 
 lazy val docs = project

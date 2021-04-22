@@ -8,6 +8,10 @@ module.exports = {
     organizationName: 'k8ty-app', // Usually your GitHub org/user name.
     projectName: 'k8tysaurus', // Usually your repo name.
     themeConfig: {
+        prism: {
+            additionalLanguages: ['java', 'scala'],
+            theme: require('prism-react-renderer/themes/dracula'),
+        },
         colorMode: {
             defaultMode: 'dark',
             respectPrefersColorScheme: true,
